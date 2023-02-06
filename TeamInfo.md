@@ -19,10 +19,12 @@
 
 |   Info      | Description |
 | ----------- |-------------|
-|  Title      | TBD         |
+|  Title      | StatSpot    |
 | System URL  | TBD         |
 | Video Link  | TBD         |
 
 ## Project Summary
 
-TBD
+<p align="justify">
+Sports statistics analysis has picked up major interest worldwide over the past few years. Front offices have begun to analyze historical data from current and past players to predict how players will perform today, with the hope of putting together a team that can win championships. Sports fans use past game data for players to help set lineups for their fantasy games. Unfortunately, it is very difficult to find a place where all relevant data can be found for any league worldwide with ease, and it is even more tedious to scour the internet looking for this information. Our application <b>StatSpot</b> will cut this tedious search, providing users with data for current and past players, as well as general information about teams and leagues. Our application will also provide a subscription based email service for users to select a player to receive statistics for at a specified future time.
+</p>
