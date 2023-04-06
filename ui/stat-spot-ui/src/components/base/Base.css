@@ -1,0 +1,18 @@
+.tab {
+  text-align: center;
+  background-color: teal;
+}
+
+.header {
+  /* position: absolute;
+    left: 50%;
+    transform: translateX(-50%); */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg {
+  color: rgb(65, 105, 225);
+}
