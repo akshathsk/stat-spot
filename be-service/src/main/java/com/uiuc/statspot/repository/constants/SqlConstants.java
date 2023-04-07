@@ -4,19 +4,42 @@ public interface SqlConstants {
 
   String GET_ATHLETES =
       "SELECT "
-          + "A.*, "
-          + "    C.name as clubName, "
-          + "    Co.name as countryName, "
-          + "S.name as sportName "
+          + " A.*, "
+          + " C.name as clubName, "
+          + " Co.name as countryName, "
+          + " S.name as sportName "
           + "FROM "
-          + "Athlete A "
-          + "INNER JOIN Club C on A.clubId = C.clubId "
-          + "        INNER JOIN Country Co on A.countryId = Co.countryId "
-          + "        INNER JOIN Sport S on A.sportId = S.sportId;";
+          + " Athlete A "
+          + " INNER JOIN Club C on A.clubId = C.clubId "
+          + " INNER JOIN Country Co on A.countryId = Co.countryId "
+          + " INNER JOIN Sport S on A.sportId = S.sportId "
+          + " ORDER BY "
+          + " A.name "
+          + "LIMIT 1000";
+
+  String GET_ATHLETES_FILTERED =
+      "SELECT "
+          + " A.*,  "
+          + " C.name as clubName,  "
+          + " Co.name as countryName,  "
+          + " S.name as sportName  "
+          + " FROM  "
+          + " Athlete A  "
+          + " INNER JOIN Club C on A.clubId = C.clubId  "
+          + " INNER JOIN Country Co on A.countryId = Co.countryId  "
+          + " INNER JOIN Sport S on A.sportId = S.sportId "
+          + " where A.name like \"%replace_str%\" "
+          + " ORDER BY "
+          + " A.name "
+          + " LIMIT 1000";
 
   String GET_CLUBS = "select * from Club;";
 
+  String GET_CLUBS_FILTERED = "select * from Club C where C.name like \"%replace_str%\";";
+
   String GET_LEAGUES = "select * from League;";
+
+  String GET_LEAGUES_FILTERED = "select * from League L where L.type like \"%replace_str%\";";
 
   String GET_STATS =
       "select  "
