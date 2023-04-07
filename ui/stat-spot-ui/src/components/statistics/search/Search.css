@@ -1,0 +1,19 @@
+.full-width {
+  width: 100%;
+}
+
+.outer {
+  width: 100%;
+  overflow: hidden;
+}
+
+.inner1 {
+    padding: 5px;
+  width: 93%;
+  float: left;
+}
+
+.inner2 {
+    padding: 2px;
+    margin-left: 94%;
+}

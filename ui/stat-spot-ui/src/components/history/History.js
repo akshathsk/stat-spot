@@ -103,7 +103,7 @@ function History() {
   };
 
   return (
-    <div>
+    <div> 
       <div className="border">
         <Bar options={optionsYoungPlayer} data={dataYoungPlayers} />
       </div>

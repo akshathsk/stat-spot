@@ -20,27 +20,27 @@ public class StatisticsService {
     this.statisticsRepository = statisticsRepository;
   }
 
-  public List<AthleteDto> getAthletes() {
-    return statisticsRepository.getAthletes();
+  public List<AthleteDto> getAthletes(String search) {
+    return statisticsRepository.getAthletes(search);
   }
 
-  public List<Club> getClubs() {
-    return statisticsRepository.getClubs();
+  public List<Club> getClubs(String search) {
+    return statisticsRepository.getClubs(search);
   }
 
-  public List<League> getLeagues() {
-    return statisticsRepository.getLeagues();
+  public List<League> getLeagues(String search) {
+    return statisticsRepository.getLeagues(search);
   }
 
-  public Statistics getStatistics() {
+  public Statistics getStatistics(String search) {
     List<AthleteDto> athletes = new ArrayList<>();
-    athletes.addAll(getAthletes());
+    athletes.addAll(getAthletes(search));
 
     List<Club> clubs = new ArrayList<>();
-    clubs.addAll(getClubs());
+    clubs.addAll(getClubs(search));
 
     List<League> leagues = new ArrayList<>();
-    leagues.addAll(getLeagues());
+    leagues.addAll(getLeagues(search));
 
     return new Statistics(athletes, clubs, leagues);
   }

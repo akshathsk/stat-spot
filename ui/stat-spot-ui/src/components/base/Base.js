@@ -3,6 +3,7 @@ import Tabs from "react-bootstrap/Tabs";
 
 import "./Base.css";
 import History from "../history/History";
+import Statistics from "../statistics/Statistics";
 
 function Base() {
   return (
@@ -16,8 +17,7 @@ function Base() {
         >
           <Tab eventKey="statistics" title="Statistics">
             <div className="link">
-              The Statistics Page is under developement. We will be up and running
-              soon!
+              <Statistics />
             </div>
           </Tab>
           <Tab eventKey="history" title="History">
@@ -25,8 +25,8 @@ function Base() {
           </Tab>
           <Tab eventKey="subscribe" title="Subscribe">
             <div className="link">
-              The Subscribe Page is under developement. We will be up and running
-              soon!
+              The Subscribe Page is under developement. We will be up and
+              running soon!
             </div>
           </Tab>
         </Tabs>
