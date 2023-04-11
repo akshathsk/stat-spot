@@ -4,6 +4,10 @@ import { useState, useEffect } from "react";
 
 import { getStats } from "../../client/http/httpClient";
 
+import AthleteCardComponent from "./card/athletes/AthleteCardComponent";
+import ClubsCardComponent from "./card/clubs/ClubsCardComponent";
+import LeaguesCardComponent from "./card/leagues/LeaguesCardComponent";
+
 function Statistics() {
   const [stats, setStats] = useState([]);
   const [statsFiltered, setStatsFiltered] = useState([]);
@@ -34,7 +38,12 @@ function Statistics() {
   return (
     <div>
       <Search handleSearchChange={handleSearchChange} />
-      <div>{statsFiltered && JSON.stringify(statsFiltered)}</div>
+      <AthleteCardComponent statsFiltered={statsFiltered} />
+      <hr />
+      <ClubsCardComponent statsFiltered={statsFiltered} />
+      <hr />
+      <LeaguesCardComponent statsFiltered={statsFiltered} />
+      <hr />
     </div>
   );
 }
