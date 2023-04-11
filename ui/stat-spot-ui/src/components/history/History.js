@@ -61,14 +61,17 @@ function History() {
     },
   };
 
-  const labelsYoungPlayers = youngPlayersMarketValues && youngPlayersMarketValues.map((x) => x.clubName);
+  const labelsYoungPlayers =
+    youngPlayersMarketValues && youngPlayersMarketValues.map((x) => x.clubName);
 
   const dataYoungPlayers = {
     labels: labelsYoungPlayers,
     datasets: [
       {
         label: "Market Value (in mil)",
-        data: youngPlayersMarketValues && youngPlayersMarketValues.map((x) => x.totalMarketValue),
+        data:
+          youngPlayersMarketValues &&
+          youngPlayersMarketValues.map((x) => x.totalMarketValue),
         backgroundColor: "rgb(135, 206, 250)",
       },
     ],
@@ -87,27 +90,28 @@ function History() {
     },
   };
 
-  const labelsLowestHomeGoalLeagues = lowestHomeGoalLeagues && lowestHomeGoalLeagues.map(
-    (x) => x.leagueName
-  );
+  const labelsLowestHomeGoalLeagues =
+    lowestHomeGoalLeagues && lowestHomeGoalLeagues.map((x) => x.leagueName);
 
   const dataLowestHomeGoalLeagues = {
     labels: labelsLowestHomeGoalLeagues,
     datasets: [
       {
         label: "Number of Goals",
-        data: lowestHomeGoalLeagues && lowestHomeGoalLeagues.map((x) => x.homeGoalsTotal),
+        data:
+          lowestHomeGoalLeagues &&
+          lowestHomeGoalLeagues.map((x) => x.homeGoalsTotal),
         backgroundColor: "rgb(135, 206, 250)",
       },
     ],
   };
 
   return (
-    <div> 
+    <div>
       <div className="border">
         <Bar options={optionsYoungPlayer} data={dataYoungPlayers} />
       </div>
-        <hr/>
+      <hr />
       <div className="border">
         <Bar
           options={optionsLowestHomeGoalLeagues}
