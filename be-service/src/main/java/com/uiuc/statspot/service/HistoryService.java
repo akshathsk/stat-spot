@@ -16,11 +16,11 @@ public class HistoryService {
     this.historyRepository = historyRepository;
   }
 
-  public List<MarketValueDto> getYoungPlayersMarketValue() {
-    return historyRepository.getYoungPlayersMarketValue();
+  public List<MarketValueDto> getYoungPlayersMarketValue(String dateOfBirth) {
+    return historyRepository.getYoungPlayersMarketValue(dateOfBirth);
   }
 
-  public List<HomeGoalsDto> getLowestHomeGoalLeagues() {
-    return historyRepository.getLowestHomeGoalLeagues();
+  public List<HomeGoalsDto> getLowestHomeGoalLeagues(String season) {
+    return historyRepository.getLowestHomeGoalLeagues(season);
   }
 }

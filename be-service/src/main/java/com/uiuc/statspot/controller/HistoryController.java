@@ -5,6 +5,7 @@ import com.uiuc.statspot.dto.MarketValueDto;
 import com.uiuc.statspot.service.HistoryService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,13 +20,13 @@ public class HistoryController {
     this.historyService = historyService;
   }
 
-  @GetMapping("/history/market-value/young")
-  public List<MarketValueDto> getYoungPlayersMarketValue() {
-    return historyService.getYoungPlayersMarketValue();
+  @GetMapping("/history/market-value/young/{dateOfBirth}")
+  public List<MarketValueDto> getYoungPlayersMarketValue(@PathVariable String dateOfBirth) {
+    return historyService.getYoungPlayersMarketValue(dateOfBirth);
   }
 
-  @GetMapping("/history/leagues/goals/home/lowest")
-  public List<HomeGoalsDto> getLowestHomeGoalLeagues() {
-    return historyService.getLowestHomeGoalLeagues();
+  @GetMapping("/history/leagues/goals/home/lowest/{season}")
+  public List<HomeGoalsDto> getLowestHomeGoalLeagues(@PathVariable String season) {
+    return historyService.getLowestHomeGoalLeagues(season);
   }
 }
