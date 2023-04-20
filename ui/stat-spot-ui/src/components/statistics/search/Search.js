@@ -47,7 +47,6 @@ function Search(props) {
         </div>
         <hr />
       </div>
-      {/* <div>{resData && JSON.stringify(resData)}</div> */}
     </div>
   );
 }

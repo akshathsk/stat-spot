@@ -4,6 +4,7 @@ import {
   getYoungPlayersMarketValue,
   getLowestHomeGoalLeagues,
 } from "../../client/http/httpClient";
+import Button from "react-bootstrap/Button";
 
 import {
   Chart as ChartJS,
@@ -28,24 +29,28 @@ ChartJS.register(
 function History() {
   const [youngPlayersMarketValues, setYoungPlayersMarketValues] = useState([]);
   const [lowestHomeGoalLeagues, setLowestHomeGoalLeagues] = useState();
+  const [searchInputYoungPlayers, setSearchInputYoungPlayers] =
+    useState("2000-01-01");
+  const [searchInputLowestHomeGoals, setSearchInputLowestHomeGoals] =
+    useState("2021");
 
-  function fetchYoungPlayersMarketValue() {
+  function fetchYoungPlayersMarketValue(inputYoungPlayers) {
     const data = [];
-    getYoungPlayersMarketValue(data).then(() => {
+    getYoungPlayersMarketValue(data, inputYoungPlayers).then(() => {
       setYoungPlayersMarketValues(data);
     });
   }
 
-  function fetchLowestHomeGoalLeagues() {
+  function fetchLowestHomeGoalLeagues(inputLowestHomeGoals) {
     const data = [];
-    getLowestHomeGoalLeagues(data).then(() => {
+    getLowestHomeGoalLeagues(data, inputLowestHomeGoals).then(() => {
       setLowestHomeGoalLeagues(data);
     });
   }
 
   useEffect(() => {
-    fetchYoungPlayersMarketValue();
-    fetchLowestHomeGoalLeagues();
+    fetchYoungPlayersMarketValue(searchInputYoungPlayers);
+    fetchLowestHomeGoalLeagues(searchInputLowestHomeGoals);
   }, []);
 
   const optionsYoungPlayer = {
@@ -106,13 +111,83 @@ function History() {
     ],
   };
 
+  const handleChangeYoungPlayers = (e) => {
+    e.preventDefault();
+    setSearchInputYoungPlayers(e.target.value);
+  };
+
+  const handleButtonClickYoungPlayers = async (e) => {
+    if (searchInputYoungPlayers != "") {
+      fetchYoungPlayersMarketValue(searchInputYoungPlayers);
+    } else {
+      setSearchInputYoungPlayers("2000-01-01");
+      fetchYoungPlayersMarketValue("2000-01-01");
+    }
+  };
+
+  const handleChangeLowestHomeGoals = (e) => {
+    e.preventDefault();
+    setSearchInputLowestHomeGoals(e.target.value);
+  };
+
+  const handleButtonClickLowestHomeGoals = async (e) => {
+    if (searchInputLowestHomeGoals != "") {
+      fetchLowestHomeGoalLeagues(searchInputLowestHomeGoals);
+    } else {
+      setSearchInputLowestHomeGoals("2021");
+      fetchLowestHomeGoalLeagues("2021");
+    }
+  };
+
   return (
     <div>
       <div className="border">
+      <hr />
+        <div className="search">
+          <div className="outer">
+            <div className="inner1">
+              {" "}
+              <input
+                className="full-width"
+                type="search"
+                placeholder="Displaying results for players born after 2000-01-01. Update the date here."
+                onChange={handleChangeYoungPlayers}
+              />{" "}
+            </div>
+            <div className="inner2">
+              {" "}
+              <Button className="shrc-btn" type="submit" onClick={handleButtonClickYoungPlayers}>
+                Search
+              </Button>{" "}
+            </div>
+          </div>
+        </div>
+        <hr />
         <Bar options={optionsYoungPlayer} data={dataYoungPlayers} />
       </div>
       <hr />
       <div className="border">
+      <hr />
+        <div className="search">
+          <div className="outer search">
+            <div className="inner1">
+              {" "}
+              <input
+                className="full-width"
+                type="search"
+                placeholder="Displaying results for 2021 season. Update the season here."
+                onChange={handleChangeLowestHomeGoals}
+              />{" "}
+            </div>
+            <div className="inner2">
+              {" "}
+              <Button className="shrc-btn" type="submit" onClick={handleButtonClickLowestHomeGoals}>
+                Search
+              </Button>{" "}
+            </div>
+          </div>
+        </div>
+        <hr />
         <Bar
           options={optionsLowestHomeGoalLeagues}
           data={dataLowestHomeGoalLeagues}

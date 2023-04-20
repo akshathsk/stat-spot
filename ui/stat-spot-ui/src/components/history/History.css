@@ -5,3 +5,12 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+.search {
+  width: 97%;
+  overflow: inherit;
+}
+
+.shrc-btn {
+  position: absolute;
+}

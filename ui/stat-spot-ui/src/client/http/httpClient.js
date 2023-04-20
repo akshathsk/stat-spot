@@ -1,19 +1,29 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8008/",
+  baseURL: "http://34.121.253.23:8008/",
 });
 
-export async function getYoungPlayersMarketValue(data) {
-  await api.get("history/market-value/young").then((res) => {
-    data.push(...res.data);
-  });
+export async function getYoungPlayersMarketValue(
+  data,
+  searchInputYoungPlayers
+) {
+  await api
+    .get("history/market-value/young/" + searchInputYoungPlayers)
+    .then((res) => {
+      data.push(...res.data);
+    });
 }
 
-export async function getLowestHomeGoalLeagues(data) {
-  await api.get("history/leagues/goals/home/lowest").then((res) => {
-    data.push(...res.data);
-  });
+export async function getLowestHomeGoalLeagues(
+  data,
+  searchInputLowestHomeGoals
+) {
+  await api
+    .get("history/leagues/goals/home/lowest/" + searchInputLowestHomeGoals)
+    .then((res) => {
+      data.push(...res.data);
+    });
 }
 
 export async function getStats(data) {
@@ -41,16 +51,13 @@ export async function getMetadata(data) {
 }
 
 export async function postAthlete(data) {
-  await api.post("athlete", data).then(async (res) => {
-  });
+  await api.post("athlete", data).then(async (res) => {});
 }
 
 export async function putAthlete(data) {
-  await api.put("athlete/" + data.athleteId, data).then(async (res) => {
-  });
+  await api.put("athlete/" + data.athleteId, data).then(async (res) => {});
 }
 
 export async function deleteAthlete(athleteId) {
-  await api.delete("athlete/" + athleteId).then(async (res) => {
-  });
+  await api.delete("athlete/" + athleteId).then(async (res) => {});
 }
