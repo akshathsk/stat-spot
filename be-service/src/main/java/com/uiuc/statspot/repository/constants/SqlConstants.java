@@ -73,7 +73,7 @@ public interface SqlConstants {
           + "WHERE "
           + "A.position = 'Attack' "
           + "and "
-          + "A.dateOfBirth > '2000-01-01' GROUP BY "
+          + "A.dateOfBirth > '<dateOfBirth>' GROUP BY "
           + "C.clubId, "
           + "C.name ORDER BY "
           + "TotalMarketValue desc LIMIT 15;";
@@ -86,7 +86,7 @@ public interface SqlConstants {
           + "INNER JOIN PartOf P on P.leagueId = L.leagueId INNER JOIN Club C on C.clubId = P.clubId "
           + "INNER JOIN Game G on G.homeClubId = C.clubId "
           + "WHERE "
-          + "G.season = '2021' "
+          + "G.season = '<season>' "
           + "and "
           + "L.name not in ('fifa_club_world_cup') GROUP BY "
           + "L.leagueId, "
@@ -113,4 +113,12 @@ public interface SqlConstants {
   String GET_COUNTRIES_METADATA = "SELECT countryId, name FROM Country;";
 
   String GET_SPORTS_METADATA = "SELECT sportId, name FROM Sport;";
+
+  String CALL_REPORT_PROC = "call ReportProc(?);";
+
+  String READ_REPORT_1 = "select season, round, gameDate, homeClubGoals, awayClubGoals, winner from FinalReportTable;";
+
+  String READ_REPORT_2 = "select clubId, playerName, TotalMarketValue from FinalReportTable2;";
+
+  String ATHLETE_NAME = "select name from Athlete order by name asc limit 1000;";
 }

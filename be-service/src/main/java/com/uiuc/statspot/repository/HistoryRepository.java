@@ -20,19 +20,19 @@ public class HistoryRepository {
     this.jdbcTemplate = jdbcTemplate;
   }
 
-  public List<MarketValueDto> getYoungPlayersMarketValue() {
+  public List<MarketValueDto> getYoungPlayersMarketValue(String dateOfBirth) {
 
     return jdbcTemplate.query(
-        YOUNG_ATTACK_PLAYER_MKT_VALUE,
+        YOUNG_ATTACK_PLAYER_MKT_VALUE.replace("<dateOfBirth>", dateOfBirth),
         (rs, rowNum) ->
             new MarketValueDto(
                 rs.getInt("clubId"), rs.getString("name"), rs.getDouble("TotalMarketValue")));
   }
 
-  public List<HomeGoalsDto> getLowestHomeGoalLeagues() {
+  public List<HomeGoalsDto> getLowestHomeGoalLeagues(String season) {
 
     return jdbcTemplate.query(
-        LEAGUES_LOWEST_HOME_GOALS,
+        LEAGUES_LOWEST_HOME_GOALS.replace("<season>", season),
         (rs, rowNum) ->
             new HomeGoalsDto(
                 rs.getInt("leagueId"), rs.getString("type"), rs.getDouble("HomeGoalsTotal")));
