@@ -42,4 +42,8 @@ public class AthleteService {
     athleteMetadataDto.setSports(sportsDtos);
     return athleteMetadataDto;
   }
+
+  public List<String> getAthleteNames() {
+    return athleteRepository.getAthleteNames();
+  }
 }

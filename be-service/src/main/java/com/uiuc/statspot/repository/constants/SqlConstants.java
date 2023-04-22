@@ -113,4 +113,21 @@ public interface SqlConstants {
   String GET_COUNTRIES_METADATA = "SELECT countryId, name FROM Country;";
 
   String GET_SPORTS_METADATA = "SELECT sportId, name FROM Sport;";
+
+  String CALL_REPORT_PROC = "call ReportProc(?);";
+
+  String READ_REPORT_1 =
+      "select season, round, gameDate, homeClubGoals, awayClubGoals, winner from FinalReportTable;";
+
+  String READ_REPORT_2 = "select clubId, playerName, TotalMarketValue from FinalReportTable2;";
+
+  String ATHLETE_NAME = "select name from Athlete order by name asc limit 1000;";
+
+  String USER_DETAILS_CREATE =
+      "INSERT INTO UserDetail "
+          + "(userName, password, email, firstName, lastName) "
+          + "VALUES "
+          + "(?,?,?,?,?);";
+
+  String LOGIN = "SELECT userId FROM UserDetail where userName = '<userName>' and password = '<password>';";
 }
