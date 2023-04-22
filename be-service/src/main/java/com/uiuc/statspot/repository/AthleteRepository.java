@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.uiuc.statspot.repository.constants.SqlConstants.ATHLETE_NAME;
 import static com.uiuc.statspot.repository.constants.SqlConstants.DELETE_ATHLETE;
 import static com.uiuc.statspot.repository.constants.SqlConstants.GET_CLUBS_METADATA;
 import static com.uiuc.statspot.repository.constants.SqlConstants.GET_COUNTRIES_METADATA;
@@ -78,5 +79,9 @@ public class AthleteRepository {
     return jdbcTemplate.query(
         GET_SPORTS_METADATA,
         (rs, rowNum) -> new SportDto(rs.getInt("sportId"), rs.getString("name")));
+  }
+
+  public List<String> getAthleteNames() {
+    return jdbcTemplate.query(ATHLETE_NAME, (rs, rowNum) -> rs.getString("name"));
   }
 }

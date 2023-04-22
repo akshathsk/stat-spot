@@ -2,6 +2,7 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: "http://34.121.253.23:8008/",
+  // baseURL: "http://localhost:8008/",
 });
 
 export async function getYoungPlayersMarketValue(
@@ -60,4 +61,16 @@ export async function putAthlete(data) {
 
 export async function deleteAthlete(athleteId) {
   await api.delete("athlete/" + athleteId).then(async (res) => {});
+}
+
+export async function getAthleteList(data) {
+  await api.get("athlete/names").then(async (res) => {
+    data.push(...res.data);
+  });
+}
+
+export async function subscribe(data) {
+  await api.post("subscribe", data).then(async (res) => {
+    return "success"
+  });
 }
