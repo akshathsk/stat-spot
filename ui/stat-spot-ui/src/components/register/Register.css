@@ -1,0 +1,28 @@
+.out {
+  width: 100%;
+  padding: 20px;
+}
+
+.left {
+  padding: 20px;
+  float: left;
+  width: 50%;
+  height: 600px;
+  border-style: dotted;
+}
+
+.right {
+  padding: 20px;
+  width: 50%;
+  height: 600px;
+  float: right;
+  border-style: dotted;
+}
+
+.clear {
+  clear: both;
+}
+
+.color-login {
+    color: black;
+}

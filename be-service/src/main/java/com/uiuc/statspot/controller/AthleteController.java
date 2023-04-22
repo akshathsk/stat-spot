@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 public class AthleteController {
@@ -24,6 +26,7 @@ public class AthleteController {
 
   @PostMapping("/athlete")
   public void createAthlete(@RequestBody Athlete athlete) {
+
     athleteService.createAthlete(athlete);
   }
 
@@ -41,5 +44,10 @@ public class AthleteController {
   @GetMapping("/athlete/metadata")
   public AthleteMetadataDto getAthleteMetadata() {
     return athleteService.getAthleteMetadata();
+  }
+
+  @GetMapping("/athlete/names")
+  public List<String> getAthleteNames() {
+    return athleteService.getAthleteNames();
   }
 }
