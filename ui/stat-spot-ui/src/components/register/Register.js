@@ -90,13 +90,15 @@ function Register() {
                   />
                 </Form.Group>
               </Form>
-              <Button variant="primary" onClick={handleRegister}>
-                Register
-              </Button>
+              <div className="wrapper-top">
+                <Button className="ctr-button" variant="primary" onClick={handleRegister}>
+                    Register
+                </Button>
+              </div>
             </div>
             <div className="right">
               <h1 className="header bg color-login ">Login</h1>
-              <Form>
+              <Form className="margin-top">
                 <Form.Group className="mb-3" controlId="userName">
                   <Form.Label>User Name</Form.Label>
                   <Form.Control
@@ -120,9 +122,11 @@ function Register() {
                   />
                 </Form.Group>
               </Form>
-              <Button variant="primary" onClick={handleLogin}>
-                Login
-              </Button>
+              <div className="wrapper-top">
+                <Button className="ctr-button" variant="primary" onClick={handleLogin}>
+                    Login
+                </Button>
+              </div>
             </div>
           </div>
         </div>

@@ -18,12 +18,14 @@ public class LoginController {
   }
 
   @PostMapping("/register")
+  @CrossOrigin
   public void createUserDetails(@RequestBody UserDetails userDetails) {
 
     loginService.createUserDetails(userDetails);
   }
 
   @PostMapping("/login")
+  @CrossOrigin
   public String login(@RequestBody UserDetails userDetails) {
 
     return loginService.login(userDetails);

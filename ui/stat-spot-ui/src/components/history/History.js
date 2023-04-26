@@ -90,7 +90,7 @@ function History() {
       },
       title: {
         display: true,
-        text: "Competitions with the lowest home goals in the 2021 season",
+        text: "Competitions with the lowest home goals in the season",
       },
     },
   };

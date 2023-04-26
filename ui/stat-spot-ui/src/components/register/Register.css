@@ -26,3 +26,14 @@
 .color-login {
     color: black;
 }
+
+.wrapper-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ctr-button{
+  position:relative;
+  top:50%; 
+}

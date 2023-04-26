@@ -1,8 +1,9 @@
 import axios from "axios";
 
 const api = axios.create({
-  // baseURL: "http://34.121.253.23:8008/",
-  baseURL: "http://localhost:8008/",
+  baseURL: "http://34.121.253.23:8008/",
+  // baseURL: "http://localhost:8008/",
+  
 });
 
 export async function getYoungPlayersMarketValue(
