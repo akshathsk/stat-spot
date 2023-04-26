@@ -41,7 +41,7 @@ public class SubscribeService {
     emailDetails.setRecipient(subscribeDto.getEmailId());
     emailDetails.setSubject("Details for " + subscribeDto.getAthletes());
     emailDetails.setMsgBody(
-        "Please find attached details for athletes " + subscribeDto.getAthletes());
+        "Please find attached details for athlete " + subscribeDto.getAthletes());
     emailDetails.setDatasource(ds);
     emailService.sendMail(emailDetails);
   }

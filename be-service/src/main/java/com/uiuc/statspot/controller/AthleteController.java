@@ -1,11 +1,8 @@
 package com.uiuc.statspot.controller;
 
 import com.uiuc.statspot.dto.AthleteMetadataDto;
-import com.uiuc.statspot.dto.EmailDetails;
-import com.uiuc.statspot.helper.email.IEmailService;
 import com.uiuc.statspot.model.Athlete;
 import com.uiuc.statspot.service.AthleteService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +20,6 @@ public class AthleteController {
 
   AthleteService athleteService;
 
-  @Autowired IEmailService emailService;
-
   public AthleteController(AthleteService athleteService) {
     this.athleteService = athleteService;
   }
@@ -32,12 +27,7 @@ public class AthleteController {
   @PostMapping("/athlete")
   public void createAthlete(@RequestBody Athlete athlete) {
 
-    EmailDetails emailDetails = new EmailDetails();
-    emailDetails.setRecipient("sk117@illinois.edu");
-    emailDetails.setSubject("test");
-    emailDetails.setMsgBody("test");
-    emailService.sendMail(emailDetails);
-    //    athleteService.createAthlete(athlete);
+    athleteService.createAthlete(athlete);
   }
 
   @PutMapping("/athlete/{athleteId}")

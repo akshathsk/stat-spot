@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://34.121.253.23:8008/",
-  // baseURL: "http://localhost:8008/",
+  // baseURL: "http://34.121.253.23:8008/",
+  baseURL: "http://localhost:8008/",
 });
 
 export async function getYoungPlayersMarketValue(
@@ -71,6 +71,29 @@ export async function getAthleteList(data) {
 
 export async function subscribe(data) {
   await api.post("subscribe", data).then(async (res) => {
-    return "success"
+    return "success";
+  });
+}
+
+export function register(data) {
+  api.post("register", data).then((resp) => {
+    console.log(resp);
+    if (resp["status"] == 200) {
+      alert("Successfully registered user");
+    } else {
+      alert("Failed to register user");
+    }
+  });
+}
+
+export async function loginUser(data, fun) {
+  await api.post("login", data).then(async (res) => {
+    console.log(res);
+    if (res["status"] == 200 && res["data"] == "Success") {
+      alert("Login success");
+      fun(true)
+    } else {
+      alert("Please check the username and password");
+    }
   });
 }
