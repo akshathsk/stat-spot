@@ -32,9 +32,7 @@ public class SubscribeRepository {
         READ_REPORT_1,
         (rs, rowNum) ->
             new Report1(
-                rs.getString("season"),
-                rs.getString("round"),
-                rs.getDate("gameDate"),
+                rs.getString("awayClubName"),
                 rs.getInt("homeClubGoals"),
                 rs.getInt("awayClubGoals"),
                 rs.getString("winner")));

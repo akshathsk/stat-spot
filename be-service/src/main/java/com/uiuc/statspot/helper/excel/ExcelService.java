@@ -23,11 +23,7 @@ public class ExcelService {
     Row row = sheet.createRow(rowCount++);
     int columnCount = 0;
     Cell cell1 = row.createCell(columnCount++);
-    cell1.setCellValue("Game Date");
-    Cell cell2 = row.createCell(columnCount++);
-    cell2.setCellValue("Season");
-    Cell cell3 = row.createCell(columnCount++);
-    cell3.setCellValue("Round");
+    cell1.setCellValue("Away Club");
     Cell cell4 = row.createCell(columnCount++);
     cell4.setCellValue("Home Club Goals");
     Cell cell5 = row.createCell(columnCount++);
@@ -39,11 +35,7 @@ public class ExcelService {
       Row row1 = sheet.createRow(rowCount++);
       int colCount = 0;
       Cell c1 = row1.createCell(colCount++);
-      c1.setCellValue(report1.getGameDate());
-      Cell c2 = row1.createCell(colCount++);
-      c2.setCellValue(report1.getSeason());
-      Cell c3 = row1.createCell(colCount++);
-      c3.setCellValue(report1.getRound());
+      c1.setCellValue(report1.getAwayClubName());
       Cell c4 = row1.createCell(colCount++);
       c4.setCellValue(report1.getHomeClubGoals());
       Cell c5 = row1.createCell(colCount++);

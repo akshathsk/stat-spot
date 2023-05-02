@@ -20,8 +20,11 @@
 |   Info      | Description |
 | ----------- |-------------|
 |  Title      | StatSpot    |
-| System URL  | TBD         |
-| Video Link  | TBD         |
+| System URL  | http://34.121.253.23:3000/         |
+| Video Link  | https://www.youtube.com/watch?v=5-Nqz57WtWw         |
+
+Video can also be viewed on Drive - https://drive.google.com/file/d/1PzOKnNzdw-z4FuOFXFhqgfImPiVsrjSL/view?usp=sharing
+
 
 ## Project Summary
 

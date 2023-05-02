@@ -117,7 +117,7 @@ public interface SqlConstants {
   String CALL_REPORT_PROC = "call ReportProc(?);";
 
   String READ_REPORT_1 =
-      "select season, round, gameDate, homeClubGoals, awayClubGoals, winner from FinalReportTable;";
+      "select awayClubName, homeClubGoals, awayClubGoals, winner from FinalReportTable;";
 
   String READ_REPORT_2 = "select clubId, playerName, TotalMarketValue from FinalReportTable2;";
 

@@ -1,9 +1,7 @@
 DELIMITER $$
 CREATE DEFINER=`root`@`%` PROCEDURE `ReportProc`(IN athlete varchar(128))
 BEGIN 
-  DECLARE varSeason	varchar(128);
-  DECLARE varRound	varchar(128);
-  DECLARE varGameDate date; 
+  DECLARE varAwayClubName	varchar(128);
   DECLARE varHomeClubGoals INT; 
   DECLARE varAwayClubGoals INT; 
   DECLARE varWinner varchar(128); 
@@ -13,20 +11,30 @@ BEGIN
   
   DECLARE exit_loop BOOLEAN DEFAULT FALSE;
   
+  -- Player's club's perf in games against away sides
   DECLARE custCur CURSOR FOR 
                             (
                                 SELECT 
-									G.season, 
-									G.round, 
-									G.gameDate, 
-									G.homeClubGoals, 
-									G.awayClubGoals
-								FROM 
-									`stat-spot-db`.Game G
-										INNER JOIN `stat-spot-db`.Club C on C.clubId = G.homeClubId
-										INNER JOIN `stat-spot-db`.Athlete A on A.clubId = C.clubId
-								WHERE
-									A.name = athlete
+									C1.name as awayClubName, 
+									temp.total_home_goals as homeGoalsTotal,
+									temp.total_away_goals as awayGoalsTotal
+								from 
+									Club C1
+										INNER JOIN 
+											(
+											SELECT 
+												G.awayClubId,
+												sum(G.homeClubGoals) as total_home_goals,
+												sum(G.awayClubGoals) as total_away_goals
+											FROM 
+												`stat-spot-db`.Game G
+													INNER JOIN `stat-spot-db`.Club C on C.clubId = G.homeClubId
+													INNER JOIN `stat-spot-db`.Athlete A on A.clubId = C.clubId
+											WHERE
+												A.name = athlete
+											GROUP BY
+												awayClubId
+											) AS temp ON C1.clubId = temp.awayClubId
                             );
                             
     DECLARE cur2 CURSOR FOR 
@@ -48,6 +56,7 @@ BEGIN
 													Athlete A1
 												where
 													A1.name = athlete
+												LIMIT 1
 												)
 								GROUP BY 
 									C.clubId
@@ -58,9 +67,7 @@ BEGIN
   DROP TABLE IF EXISTS FinalReportTable;
   
   CREATE TABLE FinalReportTable (
-      season varchar(128),
-      round varchar(128),
-      gameDate date,
+      awayClubName varchar(128),
       homeClubGoals INT,
       awayClubGoals	INT,
       winner varchar(128)
@@ -76,7 +83,7 @@ BEGIN
   
   OPEN custCur;
     cloop: LOOP
-    FETCH custCur INTO varSeason, varRound, varGameDate, varHomeClubGoals, varAwayClubGoals;
+    FETCH custCur INTO varAwayClubName, varHomeClubGoals, varAwayClubGoals;
     IF exit_loop THEN
         LEAVE cloop;
     END IF;  
@@ -89,7 +96,7 @@ BEGIN
         SET varWinner = 'DRAW';
     END IF;
     
-    INSERT INTO FinalReportTable VALUE (varSeason, varRound, varGameDate, varHomeClubGoals, varAwayClubGoals, varWinner);
+    INSERT INTO FinalReportTable VALUE (varAwayClubName, varHomeClubGoals, varAwayClubGoals, varWinner);
     
     END LOOP cloop;
     CLOSE custCur;
@@ -107,10 +114,6 @@ BEGIN
 	
 	  END LOOP cloop;
 	  CLOSE cur2;
-
-    SELECT  
-        * 
-    FROM 
-        FinalReportTable2;
+      
 END$$
 DELIMITER ;
